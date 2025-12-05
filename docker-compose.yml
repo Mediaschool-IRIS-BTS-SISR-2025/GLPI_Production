@@ -6,6 +6,8 @@ services:
     container_name: glpi-db
     hostname: glpi-db
     restart: always
+    networks:
+      - glpi
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
@@ -19,6 +21,8 @@ services:
     container_name: glpi-app
     hostname: glpi-app
     restart: always
+    networks:
+      - glpi
     depends_on:
       - db
     # ports:
@@ -56,4 +60,5 @@ volumes:
   db_data:
   glpi_files:
 
-
+networks:
+  glpi:
